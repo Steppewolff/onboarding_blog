@@ -53,3 +53,17 @@ h1, h2, h3, h4 {
 .post h2 a, .post h2 a:visited {
     color: #000000;
 }
+
+.pagin_bar{
+    font-size: 2em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: #ffffff;
+    background-color: #C25100;
+}
+
+.current{
+    color: #ffffff;
+    padding: 1em;
+}

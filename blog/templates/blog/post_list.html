@@ -1,11 +1,30 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
-    {% for post in posts %}
+    {% for post in object_list %}
     <article class="post">
         <p> publicado: {{ post.published_date }}</p>
         <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
         <p> {{ post.text | linebreaksbr }}</p>
     </article>
     {% endfor %}
+{% endblock %}
+{% block footer %}
+    <div class="pagin">
+        <span class="pagin_bar">
+            {% if page_obj.has_previous %}
+                <a class="current" href="?page=1">&laquo; Inicio</a>
+                <a class="current" href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+            {% endif %}
+
+            <span class="current">
+                Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}
+            </span>
+
+            {% if page_obj.has_next %}
+                <a class="current" href="?page={{ page_obj.next_page_number }}">Siguiente</a>
+                <a class="current" href="?page={{ page_obj.paginator.num_pages }}">Última &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
 {% endblock %}
